@@ -1,25 +1,37 @@
 import Dashboard from "./components/Dashboard";
 import MainNavigation from "./components/layout/MainNavigation";
 import AddProjectForm from "./components/project/AddProjectForm";
-import { Route,Routes } from "react-router-dom";
-
+import { Routes,Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import LoginForm from "./components/users/LoginForm";
+import RegisterForm from "./components/users/RegisterForm";
+import ProjectBoard from "./components/project/ProjectBoard";
+import AddProjectTask from "./components/project-task/AddProjectTaskForm";
 function App() {
   return (
-      <div>
+    <div>
         <MainNavigation/>
+
         <Routes>
-        <Route path="/">
-          <Route path='dashboard' element={<Dashboard/>}/>
-          
-          <Route path='project'>
-            <Route path='create' element={<AddProjectForm/>}/>
-            <Route path='edit/:projectId' element={<AddProjectForm mode='edit' />}/>
+          <Route path='/'>
+            <Route index element={<LandingPage/>}/>
+            <Route path='login' element={<LoginForm/>}/>
+            <Route path='register' element={<RegisterForm/>}/>
+            <Route path='/dashboard' element={<Dashboard/>}/>
+
+            <Route path="/project">
+              <Route path='create' element={<AddProjectForm/>}/>
+              <Route path='edit/:projectId' element={<AddProjectForm mode='edit'/>}/>
+              <Route path='projectboard' element={<ProjectBoard/>} />
+            </Route>
+            
+            <Route path='project-task'>
+              <Route path='create' element={<AddProjectTask/>}/>
+            </Route>
           </Route>
-        </Route>
         </Routes>
-        
-      </div>
-  );
+
+    </div>);
 }
 
 export default App;
